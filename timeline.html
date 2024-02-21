@@ -1,20 +1,21 @@
 
 
-
 <script src="navbar.js" defer></script>
 <header>
-  <div id="navbarContainer" ></div>
+  <div id="navbarContainer"></div>
 </header>
   <hr/>
-<h1 style="text-align: center;">Koreader repo</h1>
-  <body style="text-align: center;">
-    <ul id="repoList"></ul>
 
-    
+
+<body>
+
+    <ul id="repoContents"></ul>
+
     <script>
-        //used to get repo list from github using api
+        //this is used to view inside a repo on github
         const username = 'koreader';
-        const githubApiUrl = `https://api.github.com/users/${username}/repos`;
+        const repo = sessionStorage.getItem('SelectedRepo');
+        const githubApiUrl = `https://api.github.com/repos/${username}/${repo}/contents`;
 
         fetch(githubApiUrl)
             .then(response => {
@@ -25,14 +26,14 @@
             })
             .then(data => {
                 // Handle the data from the GitHub API response
-                const repoListElement = document.getElementById('repoList');
+                const repoListElement = document.getElementById('repoContents');
 
-                data.forEach(repo => {
+                data.forEach(item => {
                     const listItem = document.createElement('li');
-                    listItem.textContent = repo.name;
+                    listItem.textContent = item.name;
                     listItem.addEventListener('click', () => {
-                       sessionStorage.setItem('SelectedRepo', repo.name);
-                       document.location.pathname = "timeline.html";
+                        sessionStorage.setItem('SelectedRepo', item.name);
+                       document.location.pathname = "docviewer.html";
                     });
                     repoListElement.appendChild(listItem);
                 });
@@ -40,5 +41,8 @@
             .catch(error => {
                 console.error('Error fetching data from GitHub API:', error);
             });
+
     </script>
-  </body>
+    
+
+</body>
