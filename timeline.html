@@ -32,7 +32,7 @@
                     const listItem = document.createElement('li');
                     listItem.textContent = item.name;
                     listItem.addEventListener('click', () => {
-                        sessionStorage.setItem('SelectedRepo', item.name);
+                        sessionStorage.setItem('Selecteditem', item.name);
                        document.location.pathname = "docviewer.html";
                     });
                     repoListElement.appendChild(listItem);
