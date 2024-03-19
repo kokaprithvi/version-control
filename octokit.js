@@ -8,7 +8,7 @@ export async function run(e){
   const selectedFile = encodeBase64(document.getElementById("file-upload").files[0]);
 
   const octokit = new Octokit({
-    auth: "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",
+    auth: "",
   });
 
   try {
