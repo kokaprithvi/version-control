@@ -1,17 +1,21 @@
 
-
-
 <script src="navbar.js" defer></script>
 <header>
   <div id="navbarContainer" ></div>
 </header>
   <hr/>
-<h1 style="text-align: center;">Koreader Repo list</h1>
-  <body style="text-align: center;">
-    <ul id="repoList"></ul>
 
+<link rel="stylesheet" type="text/css" href="search.css" />
+<body>
+<h1 style="text-align: center;">Koreader Repo list</h1>
+
+    <ol class="repolist" id="repoList"> </ol>
+    <h2>Library</h2>
     
-    <script>
+    <!-- creates search bar -->
+    <input type="text" placeholder="Search.."> 
+
+      <script>
         //used to get repo list from github using api
         const username = 'TextInc';
         const githubApiUrl = `https://api.github.com/users/${username}/repos`;
@@ -40,5 +44,5 @@
             .catch(error => {
                 console.error('Error fetching data from GitHub API:', error);
             });
-    </script>
-  </body>
+       </script>
+</body>
