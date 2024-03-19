@@ -12,7 +12,7 @@
     overflow: hidden;
     background-color: #153153;  
     font-family: Arial, Helvetica, sans-serif; 
-    }
+    
 li {
     display: inline-block;
     border-right: 2px solid white;
@@ -29,17 +29,10 @@ li a{
     text-decoration: none;
    
 }
-.nav-ul a:hover{
+li a:hover {
     background-color: #0e1f36;
-    padding: 14px 20px;
     
 }
 
-/* needs work - purpose is to highlight tab that is active in navbar
-.nav-ul a.active {
-    background-color: red;
-    padding: 14px 20px;
-    color: white;
-}
-*/
 
+}

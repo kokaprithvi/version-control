@@ -2,7 +2,6 @@
 input[type=file] {
    
     width: 45%;
-    height: 200;
     color: #444;
     padding: 5px;
     background: #fff;
@@ -30,7 +29,11 @@ input[type=file] {
     background-color: #e7e9eb;
    
 }
-/*
-body{
-   
-} */
+
+form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5vmax;
+    box-sizing: border-box;
+} 
