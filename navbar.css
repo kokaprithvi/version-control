@@ -1,4 +1,9 @@
 .nav-ul {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+
     display: block;
     text-align: right;
     list-style-type: none;
@@ -16,7 +21,7 @@ li:first-child{
     border-left: 2px solid white; 
 }
 li a{
-    
+    font-size: 25px;
     color: white;
     display: block;
     padding: 14px 20px;
