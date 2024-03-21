@@ -16,7 +16,7 @@ export async function run(e){
   fileReader.readAsDataURL(uploadedFile);
 
   const octokit = new Octokit({
-    auth: "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",
+    auth: "",
   });
   
   try {
