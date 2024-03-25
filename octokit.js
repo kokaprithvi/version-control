@@ -19,7 +19,7 @@ export async function run(e) {
   const contentBase64 = await toBase64(uploadedFile); 
 
   const octokit = new Octokit({
-    auth: "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", 
+    auth: "", 
   });
 
   try {
