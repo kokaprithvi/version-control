@@ -1,29 +1,32 @@
 import { Octokit } from "https://esm.sh/octokit";
 
-function encodeBase64(content) {
-  return btoa(unescape(encodeURIComponent(content)));
-}
-
-export async function run(e){
+export async function run(e) {
   const uploadedFile = document.getElementById("file-upload").files[0];
-  const fileReader = new FileReader();
-  const content = { base64Encode: "" };
-  fileReader.onloadend = () => {
-    content.base64Encode = fileReader.result
+
+  // Function to convert file to base64
+  const toBase64 = file => new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      const base64String = reader.result
         .replace('data:', '')
         .replace(/^.+,/, '');
-  };
-  fileReader.readAsDataURL(uploadedFile);
+      resolve(base64String);
+    };
+    reader.onerror = error => reject(error);
+    reader.readAsDataURL(file);
+  });
+
+  const contentBase64 = await toBase64(uploadedFile); 
 
   const octokit = new Octokit({
-    auth: "",
+    auth: "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", 
   });
-  
+
   try {
     const response = await octokit.rest.repos.createOrUpdateFileContents({
       owner: 'kokaprithvi',
       repo: 'version-control',
-      path: `${uploadedFile.name}`,
+      path: ${uploadedFile.name},
       branch: 'newUpload',
       message: 'file uploaded with octokit',
       committer: {
@@ -34,11 +37,10 @@ export async function run(e){
         name: 'kokaprithvi',
         email: 'kokaprithvi01@outlook.com'
       },
-      content: content.base64Encode,
+      content: contentBase64,
     });
     console.log(response);
   } catch (err) {
-      console.log(`Error caught: ${err}`)
-  };
-  
-};
+      console.error(Error caught: ${err});
+  }
+}
