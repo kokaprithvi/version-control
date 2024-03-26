@@ -19,14 +19,14 @@ export async function run(e) {
   const contentBase64 = await toBase64(uploadedFile); 
 
   const octokit = new Octokit({
-    auth: "", 
+    auth: "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", 
   });
 
   try {
     const response = await octokit.rest.repos.createOrUpdateFileContents({
       owner: 'kokaprithvi',
       repo: 'version-control',
-      path: ${uploadedFile.name},
+      path: uploadedFile.name, // Removed interpolation
       branch: 'newUpload',
       message: 'file uploaded with octokit',
       committer: {
@@ -41,6 +41,6 @@ export async function run(e) {
     });
     console.log(response);
   } catch (err) {
-      console.error(Error caught: ${err});
+      console.error(`Error caught: ${err}`); // Corrected error logging
   }
 }

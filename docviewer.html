@@ -1,35 +1,36 @@
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.943/pdf.min.js"></script>
+<!DOCTYPE html>
+<html>
+    <header><script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.943/pdf.min.js"></script></header>
 
-<div class="pdf-toolbar">
-  <div id="navigation_controls">
-     <button class="pdf-toolbar-button" id="previous">Previous</button>
-     <input class="pdf-input" id="current_page" value="1" type="number"/>
-     <button class="pdf-toolbar-button" id="next">Next</button>
-   </div>
+    <div class="pdf-toolbar">
+        <div id="navigation_controls">
+           <button class="pdf-toolbar-button" id="previous">Previous</button>
+           <input class="pdf-input" id="current_page" value="1" type="number"/>
+           <button class="pdf-toolbar-button" id="next">Next</button>
+         </div>
+     
+        <div id="zoom_controls">  
+          <button class="pdf-toolbar-button" id="zoom_in">+</button>
+          <button class="pdf-toolbar-button" id="zoom_out">-</button>
+         </div>
+     </div>
 
-  <div id="zoom_controls">  
-    <button class="pdf-toolbar-button" id="zoom_in">+</button>
-    <button class="pdf-toolbar-button" id="zoom_out">-</button>
-   </div>
-</div>
-
-<div id = "canvas_container">
-  <canvas id = "pdf_renderer"> </canvas>
-</div>
-<script>
-  var defaultState = {
+     <div id = "canvas_container">
+        <canvas id = "pdf_renderer"> </canvas>
+     </div>
+     <p>
+        <script>
+            var defaultState = {
     pdf: null,
     currentPage: 1,
     zoom: 1
 }
-
-
+//change username to change github profile
 const username = 'TextInc';
 const repo = sessionStorage.getItem('SelectedRepo');
 const item = sessionStorage.getItem('Selecteditem');
-
+//used to take files from github using an api and send it here
 const fileLink = `https://raw.githubusercontent.com/${username}/${repo}/master/${item}`;
-
 
 // GET OUR PDF FILE
 pdfjsLib.getDocument(fileLink).then((pdf) => {
@@ -107,4 +108,7 @@ document.getElementById('zoom_out').addEventListener('click', (e) => {
     defaultState.zoom -= 0.5;
     render();
 });
-
+// if broken replace with this https://dev.to/patik123/how-show-pdf-in-vanilla-javascript-in-browser-2o10
+        </script>
+     </p>
+</html>
