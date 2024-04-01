@@ -6,11 +6,44 @@
     <title>TEI Viewer</title>
     <style>
         /* Add your CSS styles here */
+        .teiContainer {
+            position: relative;
+        }
+        .zoomContainer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #fff;
+            padding: 10px;
+            z-index: 1;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .teiContent {
+            font-size: 16px; /* Default font size */
+            margin-top: 40px; /* Adjust margin to accommodate zoom buttons */
+        }
+        pre {
+            white-space: pre-wrap; /* Allow line breaks */
+            font-family: monospace; /* Use monospace font */
+            overflow-x: auto; /* Allow horizontal scrolling */
+            border: 1px solid #ccc; /* Add border for clarity */
+            padding: 10px; /* Add padding for readability */
+            line-height: 1.5; /* Set line height */
+        }
     </style>
 </head>
 <body>
-    <div id="teiViewer">
-        <!-- TEI content will be dynamically added here -->
+    <div class="teiContainer">
+        <!-- Zoom controls -->
+        <div class="zoomContainer">
+            <button onclick="adjustZoom(2)">Zoom In</button>
+            <button onclick="adjustZoom(-2)">Zoom Out</button>
+        </div>
+
+        <div id="teiViewer">
+            <!-- TEI content will be dynamically added here -->
+        </div>
     </div>
 
     <script>
@@ -33,12 +66,20 @@
                 <div class="teiContent">
                     <!-- Render TEI content dynamically here -->
                     <!-- Display TEI XML content as text -->
-                    <pre>${escapedXML}</pre>
+                    <pre id="teiContent">${escapedXML}</pre>
                 </div>
             `;
 
             // Insert the rendered TEI content into the viewer
             document.getElementById('teiViewer').innerHTML = teiContent;
+        }
+
+        // Function to adjust zoom level
+        function adjustZoom(zoomDelta) {
+            const teiContentElement = document.getElementById('teiContent');
+            let currentFontSize = parseInt(window.getComputedStyle(teiContentElement).fontSize);
+            currentFontSize += zoomDelta;
+            teiContentElement.style.fontSize = `${currentFontSize}px`;
         }
 
         // Example usage: View a TEI XML file from a URL
