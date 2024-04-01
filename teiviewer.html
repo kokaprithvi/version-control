@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEI Viewer</title>
+    <style>
+        /* Add your CSS styles here */
+    </style>
+</head>
+<body>
+    <div id="teiViewer">
+        <!-- TEI content will be dynamically added here -->
+    </div>
+
+    <script>
+        // Function to fetch TEI XML from a URL, parse it, and render it as HTML
+        function viewTEI(url) {
+            fetch(url)
+                .then(response => response.text())
+                .then(teiXML => renderTEI(teiXML))
+                .catch(error => console.error('Error fetching TEI XML:', error));
+        }
+
+        // Function to parse TEI XML and render it as HTML
+        function renderTEI(teiXML) {
+            // Escape HTML characters in the TEI XML content
+            const escapedXML = teiXML.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+            // Render the escaped TEI XML content as text
+            const teiContent = `
+                <h1>TEI Viewer</h1>
+                <div class="teiContent">
+                    <!-- Render TEI content dynamically here -->
+                    <!-- Display TEI XML content as text -->
+                    <pre>${escapedXML}</pre>
+                </div>
+            `;
+
+            // Insert the rendered TEI content into the viewer
+            document.getElementById('teiViewer').innerHTML = teiContent;
+        }
+
+        // Example usage: View a TEI XML file from a URL
+        const teiURL = 'https://raw.githubusercontent.com/TextInc/test_doc/master/example.xml';
+        viewTEI(teiURL);
+    </script>
+</body>
+</html>
