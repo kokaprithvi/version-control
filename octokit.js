@@ -17,16 +17,18 @@ export async function run(e) {
   });
 
   const contentBase64 = await toBase64(uploadedFile); 
-
+  
+  //Uses GitHub API to give permission to repositories.
   const octokit = new Octokit({
-    auth: "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", 
+    auth: "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", 
   });
 
+  //Try/Catch, logs the error if createOrUpdate fails.
   try {
     const response = await octokit.rest.repos.createOrUpdateFileContents({
       owner: 'kokaprithvi',
       repo: 'version-control',
-      path: uploadedFile.name, // Removed interpolation
+      path: uploadedFile.name, 
       branch: 'newUpload',
       message: 'file uploaded with octokit',
       committer: {
@@ -41,6 +43,6 @@ export async function run(e) {
     });
     console.log(response);
   } catch (err) {
-      console.error(`Error caught: ${err}`); // Corrected error logging
+      console.error(`Error caught: ${err}`);
   }
 }
