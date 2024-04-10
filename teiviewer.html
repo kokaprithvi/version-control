@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+    <header><script src="navbar.js" defer></script><div id="navbarContainer"></div></header>
+    <br/>
+    <br/>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,6 +36,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="teiContainer">
         <!-- Zoom controls -->
@@ -83,7 +87,13 @@
         }
 
         // Example usage: View a TEI XML file from a URL
-        const teiURL = 'https://raw.githubusercontent.com/TextInc/test_doc/master/example.xml';
+        const username = 'TextInc';
+        const urlParams = new URLSearchParams(window.location.search);
+        const encodedRepo = urlParams.get('repo');
+        const repo = decodeURIComponent(encodedRepo);
+        const encodedItem = urlParams.get('item');
+        const item = decodeURIComponent(encodedItem);
+        const teiURL = `https://raw.githubusercontent.com/${username}/${repo}/master/${item}`;
         viewTEI(teiURL);
     </script>
 </body>

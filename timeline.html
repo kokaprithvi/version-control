@@ -14,7 +14,9 @@
     <script>
         //this is used to view inside a repo on github
         const username = 'TextInc';
-        const repo = sessionStorage.getItem('SelectedRepo');
+        const urlParams = new URLSearchParams(window.location.search);
+        const encodedRepo = urlParams.get('repo');
+        const repo = decodeURIComponent(encodedRepo);
         const githubApiUrl = `https://api.github.com/repos/${username}/${repo}/contents`;
 
         fetch(githubApiUrl)
@@ -32,8 +34,28 @@
                     const listItem = document.createElement('li');
                     listItem.textContent = item.name;
                     listItem.addEventListener('click', () => {
-                        sessionStorage.setItem('Selecteditem', item.name);
-                       document.location.pathname = "docviewer.html";
+                        var selItem = item.name;
+                        console.log("test1 " + selItem);
+                        var testArray = selItem.split(".");
+                        var encodedItem = encodeURIComponent(item.name);
+                        //for some reason javascript wont let me do array[-1] so you have to use testArray.length
+                        if(testArray[testArray.length - 1] == "pdf"){
+                            var docViewerURL = new URL("docviewer.html", window.location.origin);
+                            docViewerURL.searchParams.set('repo', repo);
+                            docViewerURL.searchParams.set('item', encodedItem);
+                            window.location.href = docViewerURL.href;
+                        }
+                        else if(testArray[testArray.length - 1] == "xml"){
+                            var teiViewerURL = new URL("teiviewer.html", window.location.origin);
+                            teiViewerURL.searchParams.set('repo', repo);
+                            teiViewerURL.searchParams.set('item', encodedItem);
+                            window.location.href = teiViewerURL.href;
+                        }
+                        else{
+                            alert("This is an unrecognized file format please select a different option.");
+                        }
+                        
+                       
                     });
                     repoListElement.appendChild(listItem);
                 });

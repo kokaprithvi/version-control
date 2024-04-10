@@ -35,8 +35,10 @@
                     const listItem = document.createElement('li');
                     listItem.textContent = repo.name;
                     listItem.addEventListener('click', () => {
-                       sessionStorage.setItem('SelectedRepo', repo.name);
-                       document.location.pathname = "timeline.html";
+                        var encodedRepo = encodeURIComponent(repo.name);
+                        var timelineURL = new URL("timeline.html", window.location.origin);
+                        timelineURL.searchParams.set('repo', encodedRepo);
+                        window.location.href = timelineURL.href;
                     });
                     repoListElement.appendChild(listItem);
                 });
