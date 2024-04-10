@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", function() {
     // Fetch and insert the content of the navbar.html into the "navbarContainer" div
     fetch("navbar.html")
@@ -7,3 +6,6 @@ document.addEventListener("DOMContentLoaded", function() {
             document.getElementById("navbarContainer").innerHTML = html;
         });
 });
+
+
+

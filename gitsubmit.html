@@ -1,13 +1,23 @@
 
-<script src="navbar.js" defer></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload Page</title>
+  <script src="navbar.js" defer></script>
+  <script src="./upload.js" type="module"></script>
+  
 <header>
   <div id="navbarContainer"></div>
 </header>
-<hr/>
+  <hr/>
+
   <link rel="stylesheet" type="text/css" href="gitsubmit.css" />
-  <body>
-    <form>
-    <input type="file" id="fileInput" accept=".pdf">
-    <button onclick="uploadFile()">Upload</button>
-  </form>
-  </body>
+<body>
+  <input type="file" id="file-upload" accept=".pdf">
+  <button onClick="run()">Upload</button>
+  
+</body>
+
+
