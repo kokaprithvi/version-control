@@ -5,7 +5,7 @@
 </header>
   <hr/>
 
-<link rel="stylesheet" type="text/css" href="search.css" />
+<link rel="stylesheet" type="text/css" href="timeline.css" />
 <body>
 <h1 style="text-align: center;">TextInc</h1>
 
@@ -32,7 +32,7 @@
                 const repoListElement = document.getElementById('repoList');
 
                 data.forEach(repo => {
-                    const listItem = document.createElement('li');
+                    const listItem = document.createElement('list');
                     listItem.textContent = repo.name;
                     listItem.addEventListener('click', () => {
                         var encodedRepo = encodeURIComponent(repo.name);
