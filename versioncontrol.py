@@ -18,3 +18,5 @@ commit_date = get_commit_date(repo_owner, repo_name, file_path)
 
 if commit_date:
     print(f"The commit date of {file_path} is: {commit_date}")
+
+"diff_url": "https://github.com/octocat/Hello-World/pull/1347.diff"
