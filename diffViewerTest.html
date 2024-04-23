@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+    <header>
+        <script src="navbar.js" defer></script>
+        <div id="navbarContainer"></div>
+    </header>
+    <body>
+        <div style="margin-top: 69px; display: flex; flex-direction: column; justify-content: center; gap:24px; text-align: center;">
+            <h1 style="text-align: center;">
+                Diff Viewer!
+            </h1>
+            <p>Left: Prithvi is cool</p>
+            <p>Right: Prithvi isnt cool</p>
+            <button onclick="getDiff()">
+                Show Diff
+            </button>
+        </div>
+        <div id="diff-viewer">
+            <!-- will display diff based off API call -->
+        </div>
+
+        <script>
+            async function getDiff() {
+
+                const body =  JSON.stringify({
+                    'left': 'Prithvi is cool',
+                    'right': 'Prithvi isnt cool',
+                    'diff_level': 'word'
+                });
+                
+                try {
+                    const response = await fetch('https://api.diffchecker.com/public/text?output_type=html&email=kokaprithvi01@outlook.com', 
+                    {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        // body: '{\n                "left": "roses are red\\nviolets are blue",\n                "right": "roses are green\\nviolets are purple",\n                "diff_level": "word"\n            }',
+                        body: JSON.stringify({
+                            'left': 'Kelby Likes Prithvi',
+                            'right': 'Prithvi Likes Kelby',
+                            'diff_level': 'word'
+                        })
+                    }).then((response) => {
+                        return response.blob();
+                    }).then((blob)=>{
+                        var reader = new FileReader();
+                        reader.readAsDataURL(blob); 
+                        reader.onloadend = function() {
+                            var base64data = reader.result;                
+                            console.log(base64data);
+                        }
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    });
+
+                } catch (err) {
+                    console.log(`Error caught: ${err.message}`);
+                }
+
+
+            }
+    
+            // Function to parse TEI XML and render it as HTML
+            function renderDiff(teiXML) {
+                // Escape HTML characters in the TEI XML content
+                const escapedXML = teiXML.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    
+                // Render the escaped TEI XML content as text
+                const teiContent = `
+                    <h1>TEI Viewer</h1>
+                    <div class="teiContent">
+                        <!-- Render TEI content dynamically here -->
+                        <!-- Display TEI XML content as text -->
+                        <pre id="teiContent">${escapedXML}</pre>
+                    </div>
+                `;
+    
+                // Insert the rendered TEI content into the viewer
+                document.getElementById('teiViewer').innerHTML = teiContent;
+            }
+        </script>
+    </body>
+</html>
