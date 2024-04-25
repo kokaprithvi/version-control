@@ -3,18 +3,67 @@
 <head>
     <title>Text Diff Viewer</title>
     <script src="navbar.js" defer></script>
+    <script src="./fetch.js" type="module"></script>
+
 </head>
 <body>
     <header>
         <div id="navbarContainer"></div>
     </header>
-
-    <div style="margin-top: 69px; display: flex; flex-direction: column; justify-content: center; gap:24px; text-align: center;">
+    
+            
+    <div style="margin-top: 69px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap:24px; text-align: center;">
         <h1 style="text-align: center;">
             Diff Viewer!
         </h1>
-        <p>Left: Prithvi is cool</p>
-        <p>Right: Prithvi isn't cool</p>
+        
+        <button style="width: 50px;"onClick="run()">Fetch</button>
+            
+         
+        <p><?xml version="1.0" encoding="UTF-8"?>
+            <TEI xmlns="http://www.tei-c.org/ns/1.0">
+                <teiHeader>
+                    <fileDesc>
+                        <titleStmt>
+                            <title>[A89]</title>
+                        </titleStmt>
+                        <publicationStmt><p></p></publicationStmt>
+                        <sourceDesc>
+                            <p>[Harpur MSS A89]</p>
+                        </sourceDesc>
+                    </fileDesc>
+                    <revisionDesc>
+                        <change who="Dibyajyoti" when="2010-03-12">Typing of A89 mss pages 00000001-00000385</change>
+                    </revisionDesc>
+                    
+                </teiHeader>
+                
+                <text>
+                    <body>
+            
+            <pb n="i" facs="A89/00000001.jpg"/></p>
+        <p><?xml version="1.0" encoding="UTF-8"?>
+            <TEI xmlns="http://www.tei-c.org/ns/1.0">
+                <teiHeader>
+                    <fileDesc>
+                        <titleStmt>
+                            <title>[A69]</title>
+                        </titleStmt>
+                        <publicationStmt><p></p></publicationStmt>
+                        <sourceDesc>
+                            <p>[Harpur MSS A69]</p>
+                        </sourceDesc>
+                    </fileDesc>
+                    <revisionDesc>
+                        <change who="Dibyajyoti" when="2010-03-12">Typing of A89 mss pages 00000001-00000385</change>
+                    </revisionDesc>
+                    
+                </teiHeader>
+                
+                <text>
+                    <body>
+            
+            <pb n="i" facs="A89/00000001.jpg"/></p>
         <button onclick="getDiff()">
             Show Diff
         </button>
@@ -35,8 +84,49 @@
     <script>
         async function getDiff() {
             const body = {
-                'left': 'Prithvi is cool',
-                'right': 'Prithvi isn\'t cool',
+                'left': `<?xml version="1.0" encoding="UTF-8"?>
+            <TEI xmlns="http://www.tei-c.org/ns/1.0">
+                <teiHeader>
+                    <fileDesc>
+                        <titleStmt>
+                            <title>[A89]</title>
+                        </titleStmt>
+                        <publicationStmt><p></p></publicationStmt>
+                        <sourceDesc>
+                            <p>[Harpur MSS A89]</p>
+                        </sourceDesc>
+                    </fileDesc>
+                    <revisionDesc>
+                        <change who="Dibyajyoti" when="2010-03-12">Typing of A89 mss pages 00000001-00000385</change>
+                    </revisionDesc>
+                    
+                </teiHeader>
+                
+                <text>
+                    <body>
+            <pb n="i" facs="A89/00000001.jpg"/>`,
+                'right': `<?xml version="1.0" encoding="UTF-8"?>
+            <TEI xmlns="http://www.tei-c.org/ns/1.0">
+                <teiHeader>
+                    <fileDesc>
+                        <titleStmt>
+                            <title>[A69]</title>
+                        </titleStmt>
+                        <publicationStmt><p></p></publicationStmt>
+                        <sourceDesc>
+                            <p>[Harpur MSS A69]</p>
+                        </sourceDesc>
+                    </fileDesc>
+                    <revisionDesc>
+                        <change who="Dibyajyoti" when="2010-03-12">Typing of A89 mss pages 00000001-00000385</change>
+                    </revisionDesc>
+                    
+                </teiHeader>
+                
+                <text>
+                    <body>
+            
+            <pb n="i" facs="A89/00000001.jpg"/>`,
                 'diff_level': 'word'
             };
 
@@ -68,6 +158,9 @@
     </script>
 </body>
 </html>
+
+
+
 
 
 
