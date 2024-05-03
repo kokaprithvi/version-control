@@ -38,7 +38,18 @@ const encodedRepo = urlParams.get('repo');
 const repo = decodeURIComponent(encodedRepo);
 const encodedItem = urlParams.get('item');
 const item = decodeURIComponent(encodedItem);
-console.log(item);
+
+function sendtoTEI(){
+    const urlParms = new URLSearchParams(window.location.search);
+    const Repo = urlParams.get('repo');
+    const Item = urlParams.get("item");
+    var TeiViewerURL = new URL("teiviewer.html", window.location.origin);
+    TeiViewerURL.searchParams.set('repo', Repo);
+    TeiViewerURL.searchParams.set('item', Item);
+    TeiViewerURL.searchParams.set('conversion', 'True');
+    window.location.href = TeiViewerURL.href;
+}
+
 //used to take files from github using an api and send it here
 const fileLink = `https://raw.githubusercontent.com/${username}/${repo}/master/${item}`;
 
@@ -121,4 +132,7 @@ document.getElementById('zoom_out').addEventListener('click', (e) => {
 // if broken replace with this https://dev.to/patik123/how-show-pdf-in-vanilla-javascript-in-browser-2o10
         </script>
      </p>
+
+     <input type="button" onclick="sendtoTEI()" value="Convert to TEI" class="conbutton"/>
+
 </html>

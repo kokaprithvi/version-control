@@ -7,6 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TEI Viewer</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
         /* Add your CSS styles here */
         .teiContainer {
@@ -93,7 +94,41 @@
         const repo = decodeURIComponent(encodedRepo);
         const encodedItem = urlParams.get('item');
         const item = decodeURIComponent(encodedItem);
-        const teiURL = `https://raw.githubusercontent.com/${username}/${repo}/master/${item}`;
+        var teiURL = `https://raw.githubusercontent.com/${username}/${repo}/master/${item}`;
+
+        if (urlParams.get('conversion') == "True") {
+            var file = fetch(teiURL);
+            
+            $.ajax({
+                url: 'https://api.pdf.co/v1/pdf/convert/to/xml',
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader('x-api-key', 'ajs37@stmarys-ca.edu_Z288wbRYj8O2N3ifeOoF6ffWfXIwp268C2b5m8S39w205O0h2FJEZ9JIKZWjSsFX'); // Replace YOUR_API_KEY with your actual API key
+                },
+                success: function(response) {
+                    // Success callback
+                    console.log('Conversion successful:', response);
+                    alert('Conversion successful! XML file ready for download.');
+                    
+                    // You can handle the XML file here, for example, you can offer it for download:
+                    var downloadLink = document.createElement('a');
+                    downloadLink.href = response.url;
+                    downloadLink.download = 'result.xml';
+                    document.body.appendChild(downloadLink);
+                    downloadLink.click();
+                },
+                error: function(xhr, status, error) {
+                    // Error callback
+                    console.error('Error:', error);
+                    alert('Error occurred during conversion: ' + error);
+                }
+            });
+
+        }
+     
         viewTEI(teiURL);
     </script>
 </body>
