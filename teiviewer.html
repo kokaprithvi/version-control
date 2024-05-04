@@ -97,39 +97,54 @@
         var teiURL = `https://raw.githubusercontent.com/${username}/${repo}/master/${item}`;
 
         if (urlParams.get('conversion') == "True") {
-            var file = fetch(teiURL);
+            
+            var data = JSON.stringify({
+                "url": teiURL,
+                "outputFormat": "XML",
+                "templateId": "1",
+                "async": false,
+                "inline": "true",
+                "password": "",
+                "profiles": ""
+            });
             
             $.ajax({
                 url: 'https://api.pdf.co/v1/pdf/convert/to/xml',
                 type: 'POST',
-                data: formData,
-                processData: false,
-                contentType: false,
-                beforeSend: function(xhr) {
-                    xhr.setRequestHeader('x-api-key', 'ajs37@stmarys-ca.edu_Z288wbRYj8O2N3ifeOoF6ffWfXIwp268C2b5m8S39w205O0h2FJEZ9JIKZWjSsFX'); // Replace YOUR_API_KEY with your actual API key
+                data: data,
+                contentType: 'application/json',
+                headers: {
+                    'x-api-key': 'YOUR_API_KEY_HERE' // Replace with your actual API key
                 },
                 success: function(response) {
-                    // Success callback
                     console.log('Conversion successful:', response);
-                    alert('Conversion successful! XML file ready for download.');
-                    
-                    // You can handle the XML file here, for example, you can offer it for download:
-                    var downloadLink = document.createElement('a');
-                    downloadLink.href = response.url;
-                    downloadLink.download = 'result.xml';
-                    document.body.appendChild(downloadLink);
-                    downloadLink.click();
+                    if (response.body) {
+                        // Encode the XML content to ensure special characters are handled properly
+                        const encodedXML = encodeURIComponent(response.body);
+                        // Create a new <pre> element to contain the XML content
+                        const preElement = document.createElement('pre');
+                        preElement.id = 'teiContent';
+                        preElement.textContent = decodeURIComponent(encodedXML);
+                        // Append the <pre> element to the existing teiContainer div
+                        const teiContainer = document.querySelector('.teiContainer');
+                        teiContainer.innerHTML = ''; // Clear existing content if needed
+                        teiContainer.appendChild(preElement);
+                    } else {
+                        alert('XML content not found in the response.');
+                    }
                 },
                 error: function(xhr, status, error) {
-                    // Error callback
-                    console.error('Error:', error);
-                    alert('Error occurred during conversion: ' + error);
+                    console.error('Conversion failed:', xhr.responseText);
+                    alert('Error occurred: ' + xhr.responseText);
                 }
             });
 
         }
+        else {
+            viewTEI(teiURL);
+        }
      
-        viewTEI(teiURL);
+        
     </script>
 </body>
 </html>
