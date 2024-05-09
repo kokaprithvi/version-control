@@ -1,6 +1,14 @@
+body {
+  text-align: center;
+  padding-top: 45px; 
+  background-color: #e7e9eb;
+}
 
+h1{
+  color: red;
+}
 input[type=file] {
-   
+  
     width: 45%;
     color: #444;
     padding: 5px;
@@ -9,6 +17,7 @@ input[type=file] {
     border: 1px solid #555;
   }
   input[type=file]::file-selector-button {
+    
     margin-right: 20px;
     border: none;
     background: #084cdf;
@@ -24,16 +33,11 @@ input[type=file] {
     background: #0d45a5;
   }
 
-  body {
-    padding-top: 45px; 
-    background-color: #e7e9eb;
-   
-}
 
-form{
+  form{
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 5vmax;
     box-sizing: border-box;
-} 
+}
