@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+
+
+</script>
+<html>
+<head>
+    <title>Text Diff Viewer</title>
+    <script src="navbar.js" defer></script>
+    <script src="./fetch.js" type="module"></script>
+<body>
+    
+
+</head>
+<body>
+    <header>
+        <div id="navbarContainer"></div>
+    </header>
+    
+            
+    <div style="width: 100%; margin-top: 69px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap:24px; text-align: center;">
+        <h1 style="text-align: center;">
+            Diff Viewer!
+        </h1>
+        <section style="display: flex; justify-content: center; gap: 6rem;">
+            <div style="width: 100%; align-items: center; display: flex; flex-direction: column; gap: 8px; margin-bottom: 1rem;">
+                <button style="width: 50px;"onClick="fetchFile1()">Fetch File 1</button> 
+                <p id="first-file">Fetched File: None</p>
+            </div>
+    
+            <div style="width: 100%; align-items: center; display: flex; flex-direction: column; gap: 8px;">
+                <button style="width: 50px;"onClick="fetchFile2()">Fetch File 2</button>
+                <p id="second-file">Fetched File: None</p>
+            </div>
+        </section>
+
+        
+        
+       
+       
+        <button onclick="getDiff()">
+            Show Diff
+        </button>
+    </div>
+    <!-- Zoom controls -->
+    <div style="position: fixed; top: 0; left: 0; padding: 20px; margin-top: 3.5rem" class="zoomContainer">
+        <button onclick="adjustZoom(2)">Zoom In</button>
+        <button onclick="adjustZoom(-2)">Zoom Out</button>
+    </div>
+
+    <div id="teiViewer">
+        <!-- TEI content will be dynamically added here -->
+    </div>
+</body>
+</html>
+
+
+
+
+
+

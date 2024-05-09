@@ -1,0 +1,20 @@
+get http://localhost:5500
+
+###
+
+post http://localhost:80
+Content-Type: application/json
+
+{
+    "message": "hello world!"
+}
+
+###
+
+curl --location --request POST 'https://api.diffchecker.com/public/text?output_type=html&email=kokaprithvi01@outlook.com' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "left": "roses are red\nviolets are blue",
+    "right": "roses are green\nviolets are purple",
+    "diff_level": "word"
+}'
