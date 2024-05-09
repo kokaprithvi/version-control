@@ -3,25 +3,24 @@
     width: 100%;
     top: 0;
     left: 0;
-
     display: block;
-    text-align: middle;
+    text-align: left;
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #153153;  
+    background-color: #003768;  
     font-family: Arial, Helvetica, sans-serif; 
     
+
+
 li {
     display: inline-block;
-    border-right: 2px solid white;
+    vertical-align: middle;
 }
-li:first-child{
-    border-left: 2px solid white; 
-}
+
 li a{
-    font-size: 25px;
+    font-size: 22.5px;
     color: white;
     display: block;
     padding: 14px 20px;
@@ -29,10 +28,18 @@ li a{
     text-decoration: none;
    
 }
+
 li a:hover {
-    background-color: #0e1f36;
+    text-decoration: underline;
+    text-decoration-color: red;
+
     
 }
 
+li img{
+    text-align: ;
+    width: 150px;
+    height: 30px;
+}
 
 }

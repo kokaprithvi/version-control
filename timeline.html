@@ -1,14 +1,13 @@
-
+<title>Timeline</title>
 
 <script src="navbar.js" defer></script>
 <header>
   <div id="navbarContainer"></div>
 </header>
-  <hr/>
-
-
+<link rel="stylesheet" type="text/css" href="timeline.css" />
+<br/>
 <body>
-    <link rel="stylesheet" type="text/css" href="timeline.css" />
+    
     <ul class="repoContents" id="repoContents"></ul>
 
     <script>
@@ -31,7 +30,7 @@
                 const repoListElement = document.getElementById('repoContents');
 
                 data.forEach(item => {
-                    const listItem = document.createElement('li');
+                    const listItem = document.createElement('list');
                     listItem.textContent = item.name;
                     listItem.addEventListener('click', () => {
                         var selItem = item.name;

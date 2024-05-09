@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <form id="myForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name"><br><br>
+        
+        <label for="dateInput">Date created:</label>
+        <input type="date" id="date" name="date"><br><br>
+        
+        <button type="button" onclick="submitForm()">Submit</button>
+    </form>
+
+
+
+
+
+
+
+
+
+    
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+<script> 
+
+
+    function submitForm() {
+        var name = document.getElementById('name').value;
+        var date = document.getElementById('date').value;
+    
+        fetch('https://api.sendinblue.com/v3/smtp/email', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'api-key': 'API key',
+            },
+            body: JSON.stringify({
+              sender: {
+                name: 'Text website',
+                email: 'Sender email',
+              },
+              to: [{ email: 'destination email' }],
+              subject: 'file wait to be approved',
+              htmlContent: 'name:  ' + name + '\nDate: ' + date,
+            }),
+          })
+          .then(response => {
+            if (response.ok) {
+              console.log('Email sent successfully');
+            } else {
+              console.error('Failed to send email');
+            }
+          })
+          .catch(error => {
+            console.error('Error:', error);
+          });
+    }
+
+    
+
+
+
+
+
+    
+</script>
