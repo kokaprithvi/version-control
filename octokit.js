@@ -29,7 +29,7 @@ export async function run(e) {
       owner: 'kokaprithvi',
       repo: 'version-control',
       path: uploadedFile.name, 
-      branch: 'newUpload',
+      branch: 'comparingCommit',
       message: 'file uploaded with octokit',
       committer: {
         name: 'kokaprithvi',

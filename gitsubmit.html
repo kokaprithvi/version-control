@@ -15,9 +15,47 @@
 
   <link rel="stylesheet" type="text/css" href="gitsubmit.css" />
 <body>
+  <form>
   <input type="file" id="file-upload" accept=".pdf">
-  <button onClick="run()">Upload</button>
-  
+  <button onClick="run(); emailNotif()">Upload</button>
+</form>
+  <h1>DISCLAIMER:</h1>
+  <h2>We do not allow content or activity on TextInc that:
+    infringes any proprietary right of any party, including patent, trademark, trade secret, copyright, right of publicity, or other right;</h2>
 </body>
 
+<!-- Script for email -->
+<script> 
+
+
+      function emailNotif() {
+          
+          fetch('https://api.sendinblue.com/v3/smtp/email', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'api-key': 'API-KEY',
+              },
+              body: JSON.stringify({
+                sender: {
+                  name: 'TextInc',
+                  email: 'sender@gmail.com',
+                },
+                to: [{ email: 'recipient.edu' }],
+                subject: 'File waiting to be approved',
+                htmlContent: 'New submission for upload approval. Action needed.',
+              }),
+            })
+            .then(response => {
+              if (response.ok) {
+                console.log('Email sent successfully');
+              } else {
+                console.error('Failed to send email');
+              }
+            })
+            .catch(error => {
+              console.error('Error:', error);
+            });
+      }    
+  </script>
 
