@@ -1,3 +1,5 @@
-import { run } from './DiffFetch.js';
+import { run, runz } from './DiffFetch.js';
 
 window.run = run;
+
+window.run = runz;
