@@ -20,7 +20,7 @@ export async function run(e) {
   
   //Uses GitHub API to give permission to repositories.
   const octokit = new Octokit({
-    auth: "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", 
+    auth: "", 
   });
 
   //Try/Catch, logs the error if createOrUpdate fails.
