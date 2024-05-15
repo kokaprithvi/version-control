@@ -10,3 +10,8 @@
 
 For email notification to work (emailNotif() on gitsubmit.html)
   Uses Brevo API. Account must be made with a valid sender email attached to Brevo account. 
+
+## PDF to XML TEI
+
+For converting PDF to XML on teiviewer.html a api key is needed from pdf.co
+
