@@ -8,6 +8,11 @@
 <br/>
 <body>
     
+    <select id="sortOptions" onchange="sortList()">
+        <option value="alphabetical">Alphabetical</option>
+        <option value="date">Date</option>
+      </select>
+
     <ul class="repoContents" id="repoContents"></ul>
 
     <script>
@@ -63,6 +68,38 @@
                 console.error('Error fetching data from GitHub API:', error);
             });
 
+
+
+
+
+            function sortList() {
+                var sortOption = document.getElementById("sortOptions").value;
+                if(sortOption == "alphabetical"){
+
+                
+                        var list, i, switching, b, shouldSwitch;
+                        list = document.getElementById("repoContents");
+                        switching = true;
+                        while (switching) {
+                        switching = false;
+                        b = list.getElementsByTagName("list");
+                        for (i = 0; i < (b.length - 1); i++) {
+                            shouldSwitch = false;
+                            if (b[i].innerHTML.toLowerCase() > b[i + 1].innerHTML.toLowerCase()) {
+                            shouldSwitch = true;
+                            break;
+                            }
+                        }
+                        if (shouldSwitch) {
+                            b[i].parentNode.insertBefore(b[i + 1], b[i]);
+                            switching = true;
+                        }
+                    }
+                 }
+                 else{
+                    console.log("ERROR in sort value: unreconized sort");
+                 }
+              }
     </script>
     
 
