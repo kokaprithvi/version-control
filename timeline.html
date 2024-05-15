@@ -7,7 +7,7 @@
 <link rel="stylesheet" type="text/css" href="timeline.css" />
 <br/>
 <body>
-    
+    <p>Timeline</p>
     <ul class="repoContents" id="repoContents"></ul>
 
     <script>
@@ -26,6 +26,9 @@
                 return response.json();
             })
             .then(data => {
+                
+                data.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+
                 // Handle the data from the GitHub API response
                 const repoListElement = document.getElementById('repoContents');
 

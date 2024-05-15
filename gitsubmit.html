@@ -15,10 +15,22 @@
 
   <link rel="stylesheet" type="text/css" href="gitsubmit.css" />
 <body>
+
+  <!-- we need myform to rename the file submitted-->
+  <form id="myForm">
+    <label for="title">Title:</label>
+    <input type="text" id="title" name="title"><br><br>
+    
+    <label for="dateInput">Date created:</label>
+    <input type="date" id="date" name="date"><br><br>
+    
+    <button type="button" onclick="submitForm()">Submit</button>
+  </form>
   <form>
   <input type="file" id="file-upload" accept=".pdf">
   <button onClick="run(); emailNotif()">Upload</button>
 </form>
+
   <h1>DISCLAIMER:</h1>
   <h2>We do not allow content or activity on TextInc that:
     infringes any proprietary right of any party, including patent, trademark, trade secret, copyright, right of publicity, or other right;</h2>
