@@ -3,6 +3,18 @@ h2{
     font-family: Arial, Helvetica, sans-serif;
     font-size: 50;
 }
+select {
+    /* Style the button as desired */
+    background-color: #2f499e; /* Green */
+    color: white;
+    width: 150px; /* Adjust width as desired */
+    height: 60px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
 
 /*search bar*/
 input[type=text] {
