@@ -46,7 +46,7 @@ export async function fetchFile1(e) {
         const content = await atob(response.data.content);
         contents.content1 = content;
         
-        document.getElementById('first-file').innerText = "Fetched File: A89.xml";
+        document.getElementById('first-file').innerText = "Fetched File: " + response.data.path;
 
         // Output file contents
         console.log(`Type of content: ${typeof content}`);
@@ -71,7 +71,7 @@ export async function fetchFile2(e) {
         const content = await atob(response.data.content);
         contents.content2 = content;
 
-        document.getElementById('second-file').innerText = "Fetched File: A89.xml";
+        document.getElementById('second-file').innerText = "Fetched File: " + response.data.path;
 
         // Output file contents
         console.log(`Type of content: ${typeof content}`);
