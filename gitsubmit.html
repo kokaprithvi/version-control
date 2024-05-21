@@ -16,8 +16,15 @@
   <link rel="stylesheet" type="text/css" href="gitsubmit.css" />
 <body>
   <form>
-  <input type="file" id="file-upload" accept=".pdf">
-  <button onClick="run(); emailNotif()">Upload</button>
+    <div style="width: 100%; align-items: center; display: flex; flex-direction: column; gap: 50px; margin-bottom: 1rem;">
+ 
+    <input type="file" id="file-upload1" accept=".pdf">
+  <button onClick="emailNotif()">Email Notification</button>
+
+
+  <input type="file" id="file-upload2" accept=".pdf">
+  <button onClick="run()">Upload File</button>
+
 </form>
   <h1>DISCLAIMER:</h1>
   <h2>We do not allow content or activity on TextInc that:
@@ -39,9 +46,10 @@
               body: JSON.stringify({
                 sender: {
                   name: 'TextInc',
-                  email: 'sender@gmail.com',
+                  //Sender can't be the same email as recipient
+                  email: 'kokaprithvi01@outlook.com',
                 },
-                to: [{ email: 'recipient.edu' }],
+                to: [{ email: 'psk1@stmarys-ca.edu' }],
                 subject: 'File waiting to be approved',
                 htmlContent: 'New submission for upload approval. Action needed.',
               }),

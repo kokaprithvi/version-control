@@ -1,7 +1,7 @@
 import { Octokit } from "https://esm.sh/octokit";
 
 export async function run(e) {
-  const uploadedFile = document.getElementById("file-upload").files[0];
+  const uploadedFile = document.getElementById("file-upload2").files[0];
 
   // Function to convert file to base64
   const toBase64 = file => new Promise((resolve, reject) => {
@@ -23,6 +23,9 @@ export async function run(e) {
     auth: "", 
   });
 
+  const currentDate = new Date();
+const formattedDate = currentDate.toISOString(); // Formats the date as ISO string
+
   //Try/Catch, logs the error if createOrUpdate fails.
   try {
     const response = await octokit.rest.repos.createOrUpdateFileContents({
@@ -30,7 +33,7 @@ export async function run(e) {
       repo: 'version-control',
       path: uploadedFile.name, 
       branch: 'comparingCommit',
-      message: 'file uploaded with octokit',
+      message: 'file uploaded with octokit ${formattedDate}',
       committer: {
         name: 'kokaprithvi',
         email: 'kokaprithvi01@outlook.com'
