@@ -4,10 +4,11 @@
 
 ### Technologies included are: 
   - Brevo API - to trigger an email notification to admin when a file has been uploaded for submission.
-  - ...
+  - Octokit API - to fetch file contents on GitHub, upload files to a repository on GitHub
 
 ## How to Install and Run the Project:
-
+For octokit implementation to work (fetchFile1(), fetchFile2(), and run())
+  Uses Octokit API. Octokit API Tokens must be retrieved through GitHub.
 For email notification to work (emailNotif() on gitsubmit.html)
   Uses Brevo API. Account must be made with a valid sender email attached to Brevo account. 
 
